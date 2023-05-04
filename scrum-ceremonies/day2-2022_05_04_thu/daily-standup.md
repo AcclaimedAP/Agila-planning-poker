@@ -3,17 +3,11 @@
 ## Wazzup?
 > Yesterday I…, today I will…, I need help with…, I'm stuck with…, TIL…
 
-### Name 1
-Lorem ipsum dolor sit amet
+### Nicholas, Filip, David och Alexander (i grupp)
+Igår satte vi upp vårat flödesschema, backlog, planning poker, gruppkontrakt och valde tech stack.
 
-### Name 2
-Lorem ipsum dolor sit amet
-
-### Name 3
-Lorem ipsum dolor sit amet
-
-### Name 4
-Lorem ipsum dolor sit amet
+Idag tänker vi sätta upp databas, installera alla dependencies som vi behöver i projektet, koppla databas och socket.io till projektet,
+samt börja bestämma vem som gör vad genom sprint-planeringen och dithörande issues.
 
 
 > ⚠️⚠️⚠️ Remember to add a screenshot of today's scrum board to this folder!
