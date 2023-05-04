@@ -3,13 +3,26 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mysql = require("mysql2");
+const cors = require("cors");
+
+const app = express();
+const server = require("http").createServer(app);
 // eslint-disable-next-line import/no-extraneous-dependencies
 require("dotenv").config();
 
-const cors = require("cors");
+server.listen(3000, () => {
+  console.log("Server started on port 3000");
+});
+
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
+
 const indexRouter = require("./routes/index");
 
-const app = express();
 app.use(cors());
 
 const { DB_PORT } = process.env;
@@ -29,6 +42,11 @@ app.get("/", (req, res) => {
     console.log(result);
     res.send(result);
   });
+});
+
+io.on("connection", (socket) => {
+  console.log("Connected User");
+  console.log(socket.id);
 });
 
 app.use(logger("dev"));
