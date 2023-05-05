@@ -8,8 +8,11 @@
 - Idag så har vi delat upp våra issues och ska jobba individuellt med dom. 
 - Jag är inte helt säker på hur jag ska använda socket.io så jag ska googla en hel del!
 
-### Name 2
-Lorem ipsum dolor sit amet
+### David
+Igår satte vi upp repot tillsammans med den tech-stack vi kommit överrens om, det mesta rullade på smidigt. Lite små krångel med att få socket att lira men efter ett tag lyckades vi få till det i alla fall. Så frontend / backend / DB-connection / socket connection är nu gjort.
+Idag ska jag börja jobba i en egen branch med admins möjligheter att lägga till tasks till listan. Så det blir både lite frontend och backend jobb idag.
+Vi ska även hålla demo och en review i eftermiddag.
+Dagens utmaning blir ju att börja koda med TS, men det finns hjälp att tillgå i gruppen om det skulle stanna upp för länge.
 
 ### Alexander
 Vi diskuterade vår stack igår, samt förberedde repot med att installera dependencies och satte upp databas samt socket. Efter lite strul fick vi det att fungera bra.  
