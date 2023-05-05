@@ -3,8 +3,10 @@
 ## Wazzup?
 > Yesterday I…, today I will…, I need help with…, I'm stuck with…, TIL…
 
-### Name 1
-Lorem ipsum dolor sit amet
+### Nicholas
+- Igår så satt vi alla ihop och skapa vårat repo, installerade front och backend, databas och socket.io.
+- Idag så har vi delat upp våra issues och ska jobba individuellt med dom. 
+- Jag är inte helt säker på hur jag ska använda socket.io så jag ska googla en hel del!
 
 ### Name 2
 Lorem ipsum dolor sit amet
