@@ -11,8 +11,9 @@
 ### Name 2
 Lorem ipsum dolor sit amet
 
-### Name 3
-Lorem ipsum dolor sit amet
+### Alexander
+Vi diskuterade vår stack igår, samt förberedde repot med att installera dependencies och satte upp databas samt socket. Efter lite strul fick vi det att fungera bra.  
+Idag har vi egna tasks som vi ska arbeta med tillsammans, jag ska sätta upp sessions. 
 
 ### Filip
 Igår satt vi i grupp och installerade alla dependencies vi behöver (VITE, Express-generator, Socket.io, ESLint/Prettier, CORS, Dotenv) i projektet, satte upp en databas, kopplade databasen och socket.io i applikationen. Vi delegerade även issues till alla gruppmedlemmar. Jag började även koda i min branch gentemot ett av våra issues.
