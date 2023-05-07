@@ -14,16 +14,25 @@ var con = mysql.createConnection({
 
 /* GET home page. */
 router.get("/", (req, res) => {
-    res.json('Sessions');
+    var sql = "SELECT * FROM sessions";
+    con.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).json(result);
+    })
 });
 
-router.get("/connect", (req, res) => {
-var sql = "SELECT * FROM sessions WHERE active = 1";
+router.post("/connect", (req, res) => {
+    var sql = "SELECT * FROM sessions WHERE active = 1";
+    const entry = {
+        "id": req.body.id
+    }
+    console.log(JSON.stringify(entry));
   con.query(sql, (err, result) => {
     if (err) throw err;
       if (result = []) {
-          sql = `INSERT INTO sessions (userID) VALUES ${mysql.escape(req.body.id)}`;
-          con.query(sql, (err, result) => {
+          sql = `INSERT INTO sessions (userID) VALUES (?)`;
+          var values = [JSON.stringify(entry)];
+          con.query(sql, values, (err, result) => {
               if (err) throw err;
               res.status(200).json(result);
           });
