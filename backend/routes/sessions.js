@@ -22,14 +22,20 @@ router.get("/", (req, res) => {
 });
 
 router.post("/connect", (req, res) => {
-    var sql = "SELECT * FROM sessions WHERE active = 1";
-    const entry = {
-        "id": req.body.id
-    }
+
+    
+    var sql = "SELECT * FROM sessions WHERE active = 1 LIMIT 1";
+    /*const entry = {
+        "id": req.body.id,
+    }*/
+    const entry = [req.body.id];
     console.log(JSON.stringify(entry));
+
   con.query(sql, (err, result) => {
-    if (err) throw err;
-      if (result = []) {
+      if (err) throw err;
+          console.log(result);
+      if (result.length == 0) {
+          console.log("Inserting");
           sql = `INSERT INTO sessions (userID) VALUES (?)`;
           var values = [JSON.stringify(entry)];
           con.query(sql, values, (err, result) => {
@@ -37,7 +43,15 @@ router.post("/connect", (req, res) => {
               res.status(200).json(result);
           });
       } else {
-          res.status(200).json(result);
+          console.log("found");
+          var values = [JSON.stringify(result[0].userID.concat(entry))];
+          console.log(values);
+          sql = `UPDATE sessions SET userID = (?)`;
+          con.query(sql, values, (err, result) => {
+              if (err) throw err;
+              res.status(200).json(result);
+          })
+          
     }
   });
 });
