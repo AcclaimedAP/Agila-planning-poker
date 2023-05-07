@@ -48,6 +48,10 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
   console.log("Connected User");
   console.log(socket.id);
+
+  socket.on('disconnect', () => {
+    //Remove from session
+  });
 });
 
 app.use(logger("dev"));
