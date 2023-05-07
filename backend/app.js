@@ -7,7 +7,7 @@ const cors = require("cors");
 
 const app = express();
 const server = require("http").createServer(app);
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 require("dotenv").config();
 
 server.listen(3000, () => {
@@ -22,6 +22,7 @@ const io = require("socket.io")(server, {
 });
 
 const indexRouter = require("./routes/index");
+const sessionRouter = require("./routes/sessions");
 
 app.use(cors());
 
@@ -56,5 +57,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
+app.use("/sessions", sessionRouter);
 
 module.exports = app;
