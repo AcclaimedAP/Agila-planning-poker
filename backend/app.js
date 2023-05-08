@@ -68,7 +68,7 @@ app.post("/login", (req, res) => {
   });
 });
 
-const tasks = [];
+let tasks = [];
 
 io.on("connection", (socket) => {
   console.log("Connected User");
@@ -81,6 +81,12 @@ io.on("connection", (socket) => {
 
   socket.on("task-to-vote-on", (task) => {
     console.log(tasks);
+    tasks = tasks.filter(
+      (t) =>
+        t.taskTitle !== task.taskTitle ||
+        t.taskDescription !== task.taskDescription
+    );
+    io.emit("add-task", tasks);
     io.emit("task-to-vote-on", task);
   });
 });
