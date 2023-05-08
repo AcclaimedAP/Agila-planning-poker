@@ -52,9 +52,9 @@ app.get("/", (req, res) => {
 app.use("/login", express.json());
 
 app.post("/login", (req, res) => {
-  const { username } = req.body; 
+  const { username } = req.body;
   const sql = `SELECT * FROM users WHERE name = '${username}'`;
-  
+
   app.locals.con.query(sql, (err, result) => {
     if (err) {
       console.error(err);
@@ -68,12 +68,17 @@ app.post("/login", (req, res) => {
   });
 });
 
+const tasks = [];
 
 io.on("connection", (socket) => {
   console.log("Connected User");
   console.log(socket.id);
-});
 
+  socket.on("add-task", (task) => {
+    tasks.push(task);
+    io.emit("add-task", tasks);
+  });
+});
 
 app.use(logger("dev"));
 app.use(express.json());
