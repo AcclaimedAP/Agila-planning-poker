@@ -1,3 +1,5 @@
+import { userVoteSocketEmit } from "./socket";
+
 
 function createCard(user: string, buttons = false) {
     const container = document.createElement('div') as HTMLDivElement;
@@ -6,7 +8,9 @@ function createCard(user: string, buttons = false) {
     `;
     if (buttons) {
         const numbers = [1, 3, 5, 8];
-        for (var number of numbers) {
+        for (let number of numbers) {
+            console.log(number);
+            
             const button = document.createElement('button') as HTMLButtonElement;
             button.innerHTML = number.toString();
             button.addEventListener('click', (e) => {
@@ -56,6 +60,8 @@ export function createVoteCards(users: string[], empty = false, showAll = false)
 
 function vote(storyPoints: number) {
     disableButtons();
+    userVoteSocketEmit(storyPoints);
+    
 }
 
 function disableButtons() {

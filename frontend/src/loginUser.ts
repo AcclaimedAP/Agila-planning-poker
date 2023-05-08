@@ -1,4 +1,4 @@
-import { userConnectSocket } from "./socket";
+import { userConnectSocketOn, userVoteSocketOn } from "./socket";
 import { io } from 'socket.io-client';
 const socket = io(`localhost:3000`);
 
@@ -21,7 +21,8 @@ export async function loginUser(username: string): Promise<void> {
       const responseData = await response.json();
       console.log(responseData);
 
-      userConnectSocket();
+      userConnectSocketOn();
+      userVoteSocketOn();
     } catch (error) {
       console.error(error);
     }
