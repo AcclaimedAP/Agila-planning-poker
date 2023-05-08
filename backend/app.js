@@ -34,7 +34,7 @@ const { DB_PORT } = process.env;
 
 app.locals.con = mysql.createConnection({
   host: "localhost",
-  port: 8889,
+  port: DB_PORT,
   user: "root",
   password: "root",
   database: "planning-poker-billy",
@@ -61,7 +61,9 @@ app.post("/login", (req, res) => {
       res.status(500).json({ message: "Error logging in" });
     } else {
       console.log(result);
-      res.json({ message: "Great success (in Borat voice)" });
+      res.json({
+        message: `'${username}' connected, great success (in Borat voice)`,
+      });
     }
   });
 });
