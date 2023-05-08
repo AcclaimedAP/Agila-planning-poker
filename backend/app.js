@@ -14,6 +14,13 @@ server.listen(3000, () => {
   console.log("Server started on port 3000");
 });
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
@@ -23,15 +30,13 @@ const io = require("socket.io")(server, {
 
 const indexRouter = require("./routes/index");
 
-app.use(cors());
-
 const { DB_PORT } = process.env;
 
 app.locals.con = mysql.createConnection({
   host: "localhost",
-  port: DB_PORT,
-  user: "billy",
-  password: "billyspw",
+  port: 8889,
+  user: "root",
+  password: "root",
   database: "planning-poker-billy",
 });
 
@@ -44,17 +49,35 @@ app.get("/", (req, res) => {
   });
 });
 
+app.use("/login", express.json());
+
+app.post("/login", (req, res) => {
+  const { username } = req.body; 
+  const sql = `SELECT * FROM users WHERE name = '${username}'`;
+  
+  app.locals.con.query(sql, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Error logging in" });
+    } else {
+      console.log(result);
+      res.json({ message: "Great success (in Borat voice)" });
+    }
+  });
+});
+
+
 io.on("connection", (socket) => {
   console.log("Connected User");
   console.log(socket.id);
 });
+
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use("/", indexRouter);
 
 module.exports = app;
