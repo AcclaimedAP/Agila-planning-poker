@@ -80,7 +80,6 @@ io.on("connection", (socket) => {
   });
   socket.on("user-vote", (voteObj) => {
     currentVotes.push(voteObj);
-    console.log("Adding vote: " + voteObj.voteValue);
     io.emit("user-vote", currentVotes);
   });
 });

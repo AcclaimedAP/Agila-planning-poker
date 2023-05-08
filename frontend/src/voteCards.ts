@@ -9,7 +9,6 @@ function createCard(user: string, buttons = false) {
     if (buttons) {
         const numbers = [1, 3, 5, 8];
         for (let number of numbers) {
-            console.log(number);
             
             const button = document.createElement('button') as HTMLButtonElement;
             button.innerHTML = number.toString();
