@@ -23,8 +23,12 @@ function createCard(user: string, buttons = false) {
 
 
 export function createVoteCards(users: string[], empty = true, showAll = false) {
+    console.log("Creating votecards");
+    
     const oldContainer = document.querySelector('.allVoteCardsContainer') as HTMLDivElement;
     if (oldContainer) {
+        console.log("Removing old container");
+        
         oldContainer.remove();
     }
     const container = document.createElement('div') as HTMLDivElement;
