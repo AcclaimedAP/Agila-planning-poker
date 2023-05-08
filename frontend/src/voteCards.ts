@@ -11,8 +11,9 @@ function createCard(user: string, buttons = false) {
             button.innerHTML = number.toString();
             button.addEventListener('click', (e) => {
                 e.preventDefault();
-                // Emit choice
+                vote(number);
             })
+            button.classList.add('voteButton');
             container.appendChild(button);
         }
     }
@@ -22,7 +23,7 @@ function createCard(user: string, buttons = false) {
 
 
 
-export function createVoteCards(users: string[], empty = true, showAll = false) {
+export function createVoteCards(users: string[], empty = false, showAll = false) {
     console.log("Creating votecards");
     
     const oldContainer = document.querySelector('.allVoteCardsContainer') as HTMLDivElement;
@@ -51,4 +52,16 @@ export function createVoteCards(users: string[], empty = true, showAll = false) 
     }
 
     return container;
+}
+
+function vote(storyPoints: number) {
+    disableButtons();
+}
+
+function disableButtons() {
+    const buttons = document.querySelectorAll('.voteButton') as NodeListOf<HTMLButtonElement>;
+    for (var button of buttons) {
+        button.setAttribute('disabled', 'true');
+        
+    }
 }
