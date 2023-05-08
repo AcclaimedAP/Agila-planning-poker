@@ -77,6 +77,7 @@ io.on("connection", (socket) => {
   socket.on("add-task", (task) => {
     tasks.push(task);
     io.emit("add-task", tasks);
+    console.log(tasks);
   });
 });
 
