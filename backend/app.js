@@ -35,8 +35,8 @@ const { DB_PORT } = process.env;
 app.locals.con = mysql.createConnection({
   host: "localhost",
   port: DB_PORT,
-  user: "root",
-  password: "root",
+  user: "billy",
+  password: "billyspw",
   database: "planning-poker-billy",
 });
 
