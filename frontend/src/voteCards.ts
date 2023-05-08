@@ -23,7 +23,12 @@ function createCard(user: string, buttons = false) {
 
 
 export function createVoteCards(users: string[], empty = true, showAll = false) {
+    const oldContainer = document.querySelector('.allVoteCardsContainer') as HTMLDivElement;
+    if (oldContainer) {
+        oldContainer.remove();
+    }
     const container = document.createElement('div') as HTMLDivElement;
+    container.classList.add('allVoteCardsContainer');
     var name: string | null = "";
     if (!empty) {
         name = sessionStorage.getItem('user');
@@ -37,7 +42,6 @@ export function createVoteCards(users: string[], empty = true, showAll = false) 
         if (empty) {
             isUser = false;
         }
-        console.log(isUser);
         
         container.appendChild(createCard(user, isUser));
     }

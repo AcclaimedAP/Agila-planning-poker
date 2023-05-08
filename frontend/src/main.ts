@@ -14,7 +14,14 @@ socket.on('connect', () => {
 const users = ["Alex", "Jakob", "David", "Nathalie"];
 
 app?.appendChild(createLoginForm());
-app?.appendChild(createVoteCards(users));
+const testbutton = document.createElement('button') as HTMLButtonElement;
+testbutton.innerHTML = "Test";
+
+testbutton.addEventListener('click', (e) => {
+  e.preventDefault();
+  app?.appendChild(createVoteCards(users));
+})
+app?.appendChild(testbutton);
 socket.on("add-task", (tasks: ITask[]) => {
   console.log(tasks)
 });
