@@ -40,10 +40,28 @@ body {
 *******************************************************************************/
 
 .allVoteCardsContainer {
+    display: flex;
+    flex-direction: row;
+    row-gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
     background-color: var.$offWhite;
     border: 2px solid var.$grey;
     border-radius: 1rem;
     padding: 2rem;
+    max-width: 40rem;
+
+    div {
+        display: flex;
+        justify-content: center;
+        background-color: var.$almostBlack;
+        color: var.$offWhite;
+        border: 2px solid var.$grey;
+        border-radius: 1rem;
+        padding: 0.5rem;
+        width: 8rem;
+        height: 11rem;
+    }
 }
 
 /*******************************************************************************
@@ -85,6 +103,12 @@ body {
 *******************************************************************************/
 
 #task-list {
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: 15rem;
+    margin: 2rem;
+    overflow-wrap: normal;
     background-color: var.$offWhite;
     border: 2px solid var.$grey;
     border-radius: 1rem;
@@ -96,6 +120,8 @@ body {
 *******************************************************************************/
 
 #task-to-vote-on {
+    max-width: 40rem;
+    overflow-wrap: normal;
     background-color: var.$offWhite;
     border: 2px solid var.$grey;
     border-radius: 1rem;
