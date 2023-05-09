@@ -7,7 +7,10 @@
 Lorem ipsum dolor sit amet
 
 ### David
-Lorem ipsum dolor sit amet
+Igår gjorde vi en ny planering där vi delade ut lite uppgifter som skulle göras.
+Satt en stund på eftermiddagen och kodade tillsammans med Nicholas.
+Idag ska vi göra en merge och fixa eventuella buggar samt sy ihop det vi gjort så det fungerar någorlunda.
+Sen blir det att koda vidare på uppgifterna vi delat ut. Antingen tillsammans eller enskilt.
 
 ### Alexander
 Lorem ipsum dolor sit amet
