@@ -18,6 +18,8 @@ app.use(
   cors({
     origin: "http://localhost:5173",
     credentials: true,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -35,8 +37,8 @@ const { DB_PORT } = process.env;
 app.locals.con = mysql.createConnection({
   host: "localhost",
   port: DB_PORT,
-  user: "billy",
-  password: "billyspw",
+  user: "root",
+  password: "root",
   database: "planning-poker-billy",
 });
 
@@ -51,8 +53,10 @@ app.get("/", (req, res) => {
 
 app.use("/login", express.json());
 
+let users = [];
+
 app.post("/login", (req, res) => {
-  const { username } = req.body;
+  const { username, isAdmin } = req.body;
   const sql = `SELECT * FROM users WHERE name = '${username}'`;
 
   app.locals.con.query(sql, (err, result) => {
@@ -64,9 +68,13 @@ app.post("/login", (req, res) => {
       res.json({
         message: `'${username}' connected, great success (in Borat voice)`,
       });
+
+      users.push(username);
+      io.emit("user-connect", users);
     }
   });
 });
+
 
 
 let tasks = [];
@@ -82,6 +90,7 @@ io.on("connection", (socket) => {
   });
 
 
+
   socket.on("task-to-vote-on", (task) => {
     console.log(tasks);
     tasks = tasks.filter(
@@ -93,6 +102,14 @@ io.on("connection", (socket) => {
     io.emit("task-to-vote-on", task);
   });
   
+
+  socket.on("user-connect", (username) => {
+    console.log(`${username} connected`);
+    users.push(username);
+    console.log(users);
+    io.emit("user-connect", ({ username }, users));
+  });
+
   socket.on("user-vote", (voteObj) => {
     currentVotes.push(voteObj);
     io.emit("user-vote", currentVotes);
