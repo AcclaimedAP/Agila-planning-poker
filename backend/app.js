@@ -75,7 +75,11 @@ app.post("/login", (req, res) => {
   });
 });
 
-const currentVotes = [];
+
+
+let tasks = [];
+let currentVotes = [];
+
 io.on("connection", (socket) => {
   console.log("Connected User");
   console.log(socket.id);
@@ -85,15 +89,31 @@ io.on("connection", (socket) => {
     io.emit("add-task", tasks);
   });
 
+
+
+  socket.on("task-to-vote-on", (task) => {
+    console.log(tasks);
+    tasks = tasks.filter(
+      (t) =>
+        t.taskTitle !== task.taskTitle ||
+        t.taskDescription !== task.taskDescription
+    );
+    io.emit("add-task", tasks);
+    io.emit("task-to-vote-on", task);
+  });
+  
+
   socket.on("user-connect", (username) => {
     console.log(`${username} connected`);
     users.push(username);
     console.log(users);
     io.emit("user-connect", ({ username }, users));
   });
+
   socket.on("user-vote", (voteObj) => {
     currentVotes.push(voteObj);
     io.emit("user-vote", currentVotes);
+
   });
 });
 

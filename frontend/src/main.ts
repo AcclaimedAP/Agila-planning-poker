@@ -1,9 +1,13 @@
 import { io } from "socket.io-client";
+
+import { renderTaskToVoteOn } from "./modules/taskToVoteOn";
+import { renderTaskList } from "./modules/upcomingTasksPanel";
 import { createLoginForm } from "./modules/loginForm";
 import { renderAddTaskBtn } from "./modules/admin";
 import { ITask } from "./models/ITask";
 import { createVoteCards } from "./voteCards";
 import { userVoteSocketOn } from "./socket";
+
 
 export const socket = io('http://localhost:3000');
 const app: HTMLElement | null = document.getElementById('app');
@@ -18,7 +22,13 @@ socket.on('connect', () => {
   if (username) {
     socket.emit("user-connect", username);
   }
+
 });
+
+
+// app?.appendChild(createLoginForm());
+
+app?.appendChild(renderAddTaskBtn());
 
 const users = ["Alex", "Jakob", "David", "Nathalie"];
 
@@ -35,3 +45,4 @@ app?.appendChild(testbutton);
 socket.on("add-task", (tasks: ITask[]) => {
   console.log(tasks)
 });
+

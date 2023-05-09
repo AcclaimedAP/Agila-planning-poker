@@ -15,8 +15,6 @@ export function renderAddTaskBtn(): HTMLButtonElement {
 }
 
 export function renderAddTaskForm() {
-
-    console.log('btn was clicked');
       
     const addTaskContainer: HTMLDivElement = document.createElement('div');
 
