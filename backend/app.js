@@ -40,9 +40,7 @@ app.locals.con = mysql.createConnection({
   user: "root",
   password: "root",
   database: "planning-poker-billy",
-}); 
-
-
+});
 
 app.get("/", (req, res) => {
   const sql = "SELECT * FROM users";
@@ -77,10 +75,15 @@ app.post("/login", (req, res) => {
   });
 });
 
-
+const currentVotes = [];
 io.on("connection", (socket) => {
   console.log("Connected User");
   console.log(socket.id);
+
+  socket.on("add-task", (task) => {
+    tasks.push(task);
+    io.emit("add-task", tasks);
+  });
 
   socket.on("user-connect", (username) => {
     console.log(`${username} connected`);
@@ -88,8 +91,11 @@ io.on("connection", (socket) => {
     console.log(users);
     io.emit("user-connect", ({ username }, users));
   });
+  socket.on("user-vote", (voteObj) => {
+    currentVotes.push(voteObj);
+    io.emit("user-vote", currentVotes);
+  });
 });
-
 
 app.use(logger("dev"));
 app.use(express.json());
