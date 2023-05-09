@@ -4,7 +4,9 @@
 > Yesterday I…, today I will…, I need help with…, I'm stuck with…, TIL…
 
 ### Nicholas
-Lorem ipsum dolor sit amet
+Igår så kännde jag mig lite mer kapabel att ta mig an den här uppgiften än jag gjorde under helgen. Jag hade ganska dålig känsla för hela projektet då och det känndes som att ingen av oss förstod socket tillräckligt bra för att kunna göra en planering för vårt arbete. Men efter lite mer fundering och forskning om hur socket fungerade så gjorde vi en mycket bättre planering tillsammans. Jag och Alexander scrappade vad vi hade gjort i fredags eftersom vi inte alls hade med socket i vår planering.
+Nu känns det som att vi är lite mer på banan igen, men att vi har en del att ta igen för att kunna göra någonting bra av det här arbetet.
+Skönt med en grupp där det inte är någon prestige i arbetet man redan gjort, utan att vi kan stanna upp, tänka om, och börja gå åt rätt håll igen!
 
 ### David
 Igår gjorde vi en ny planering där vi delade ut lite uppgifter som skulle göras.
