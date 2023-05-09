@@ -13,7 +13,8 @@ Idag ska vi göra en merge och fixa eventuella buggar samt sy ihop det vi gjort 
 Sen blir det att koda vidare på uppgifterna vi delat ut. Antingen tillsammans eller enskilt.
 
 ### Alexander
-Lorem ipsum dolor sit amet
+Igår arbetade jag med votecards. Det blev lite svårt med att göra det utan vissa delar, men dessa ska vara på plats nu! 
+Idag ska jag arbeta mera med votecards, specifikt att visa upp vad users har röstat på. Detta hoppas jag går snabbt, så jag får lite tid att pyssla ihop delar! Annars blire kaos.
 
 ### Filip
 ### Filip
