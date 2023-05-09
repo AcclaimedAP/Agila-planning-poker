@@ -2,6 +2,8 @@ import { ITask } from "../models/ITask";
 import { app } from "../main";
 
 export function renderTaskToVoteOn(task: ITask) {
+    console.log("task");
+    
     const existingVoteSection = document.getElementById("vote-section");
 
     const voteSection = existingVoteSection ? existingVoteSection : document.createElement("section");

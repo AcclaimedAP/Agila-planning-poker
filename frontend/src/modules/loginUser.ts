@@ -1,3 +1,5 @@
+import { userConnectSocketOn, userVoteSocketOn } from "../socket";
+
 export async function loginUser(username: string): Promise<void> {
   const data = {
     username: username,
@@ -23,6 +25,9 @@ export async function loginUser(username: string): Promise<void> {
     
     const responseData = await response.json();
     console.log(responseData);
+
+    userConnectSocketOn();
+    userVoteSocketOn();
 
     sessionStorage.setItem("username", username);
   } catch (error) {

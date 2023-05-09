@@ -3,14 +3,14 @@ import { io } from "socket.io-client";
 import { renderTaskToVoteOn } from "./modules/taskToVoteOn";
 import { renderTaskList } from "./modules/upcomingTasksPanel";
 import { createLoginForm } from "./modules/loginForm";
-import { renderAddTaskBtn } from "./modules/admin";
+import { renderAddTaskBtn } from "./modules/addTask";
 import { ITask } from "./models/ITask";
 import { createVoteCards } from "./voteCards";
 import { userVoteSocketOn } from "./socket";
 
 
 export const socket = io('http://localhost:3000');
-const app: HTMLElement | null = document.getElementById('app');
+export const app: HTMLElement | null = document.getElementById('app');
 
 socket.on('connect', () => {
   console.log('connected', socket.id);
@@ -23,8 +23,10 @@ socket.on('connect', () => {
     socket.emit("user-connect", username);
   }
 
+  socket.on("task-to-vote-on", (task: ITask) => {
+    app?.appendChild(renderTaskToVoteOn(task));
 });
-
+});
 
 // app?.appendChild(createLoginForm());
 
@@ -43,6 +45,6 @@ testbutton.addEventListener('click', (e) => {
 userVoteSocketOn();
 app?.appendChild(testbutton);
 socket.on("add-task", (tasks: ITask[]) => {
-  console.log(tasks)
+  renderTaskList(tasks)
 });
 
