@@ -3,6 +3,56 @@
 @import './normalize';
 
 body {
+    display: flex;
+    justify-content: center;
+    background-color: var.$almostBlack;
+}
+
+/*******************************************************************************
+***************************************LOGIN************************************
+*******************************************************************************/
+
+.login-form {
     background-color: var.$offWhite;
-    color: var.$errorMessage;
+    border: 2px solid var.$grey;
+    border-radius: 1rem;
+    padding: 2rem;
+
+    .login-header {
+        margin-top: 0;
+    }
+}
+
+/*******************************************************************************
+***************************************VOTECARDS********************************
+*******************************************************************************/
+
+.allVoteCardsContainer {
+    background-color: var.$offWhite;
+    border: 2px solid var.$grey;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+/*******************************************************************************
+***************************************ADD TASKS********************************
+*******************************************************************************/
+
+.addTaskContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: var.$offWhite;
+    border: 2px solid var.$grey;
+    border-radius: 1rem;
+    padding: 2rem;
+
+    .btnContainer {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 0.5rem;
+
+        button {
+            padding: 0.5rem;
+        }
+    }
 }
