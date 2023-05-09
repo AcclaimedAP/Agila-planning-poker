@@ -5,8 +5,9 @@ import { renderTaskList } from "./modules/upcomingTasksPanel";
 import { createLoginForm } from "./modules/loginForm";
 import { renderAddTaskBtn } from "./modules/addTask";
 import { ITask } from "./models/ITask";
-import { createVoteCards } from "./voteCards";
+import { createVoteCards, createVoteCardsShowingVote } from "./voteCards";
 import { userVoteSocketOn } from "./socket";
+import { IVote } from "./models/IUsers";
 
 
 export const socket = io('http://localhost:3000');
@@ -40,7 +41,8 @@ testbutton.innerHTML = "Test";
 
 testbutton.addEventListener('click', (e) => {
   e.preventDefault();
-  app?.appendChild(createVoteCards(users));
+  const votes: IVote[] = JSON.parse(sessionStorage.getItem('votes')!);
+  app?.appendChild(createVoteCardsShowingVote(votes));
 })
 userVoteSocketOn();
 app?.appendChild(testbutton);

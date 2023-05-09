@@ -1,5 +1,6 @@
 import { io } from 'socket.io-client';
 import { createVoteCards } from './voteCards';
+import { IVote } from './models/IUsers';
 const socket = io(`localhost:3000`);
 
 export function userConnectSocketOn() {
@@ -12,17 +13,16 @@ export function userConnectSocketOn() {
 }
 
 export function userVoteSocketEmit(voteValue: number) {
-    const user = sessionStorage.getItem('user') ?? "";
-    
-    const voteObj = {user, voteValue}
+    const name = sessionStorage.getItem('user') ?? "";
+    const voteObj: IVote = {name, voteValue}
     
     socket.emit('user-vote', voteObj);
 }
 
 export function userVoteSocketOn() {
     
-    socket.on('user-vote', (data) => {
-        
+    socket.on('user-vote', (data: IVote) => {
+        sessionStorage.setItem('votes', JSON.stringify(data));
         console.log(data);
         
     })
