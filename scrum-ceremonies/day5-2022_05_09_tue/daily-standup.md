@@ -3,16 +3,16 @@
 ## Wazzup?
 > Yesterday I…, today I will…, I need help with…, I'm stuck with…, TIL…
 
-### Name 1
+### Nicholas
 Lorem ipsum dolor sit amet
 
-### Name 2
+### David
 Lorem ipsum dolor sit amet
 
-### Name 3
+### Alexander
 Lorem ipsum dolor sit amet
 
-### Name 4
+### Filip
 Lorem ipsum dolor sit amet
 
 
