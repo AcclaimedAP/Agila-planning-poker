@@ -16,7 +16,10 @@ Sen blir det att koda vidare på uppgifterna vi delat ut. Antingen tillsammans e
 Lorem ipsum dolor sit amet
 
 ### Filip
-Lorem ipsum dolor sit amet
+### Filip
+Igår satt jag en liten stund med Nicholas och David och kikade på deras parprogrammering. Innan dess gjorde vi om vårat scrum-board och vår sprintplanering. 
+Efter det gick jag vidare och arbetade med socket i login funktionaliteten, i Front och Back end,
+också fixat lite med adminrättigheter. Idag ska jag fixa lite med disconnectade users och lite annat smått och gott.
 
 
 > ⚠️⚠️⚠️ Remember to add a screenshot of today's scrum board to this folder!
