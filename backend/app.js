@@ -69,7 +69,7 @@ app.post("/login", (req, res) => {
 });
 
 const tasks = [];
-
+const currentVotes = [];
 io.on("connection", (socket) => {
   console.log("Connected User");
   console.log(socket.id);
@@ -77,6 +77,10 @@ io.on("connection", (socket) => {
   socket.on("add-task", (task) => {
     tasks.push(task);
     io.emit("add-task", tasks);
+  });
+  socket.on("user-vote", (voteObj) => {
+    currentVotes.push(voteObj);
+    io.emit("user-vote", currentVotes);
   });
 });
 

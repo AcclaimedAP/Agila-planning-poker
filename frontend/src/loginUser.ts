@@ -1,3 +1,7 @@
+import { userConnectSocketOn, userVoteSocketOn } from "./socket";
+import { io } from 'socket.io-client';
+const socket = io(`localhost:3000`);
+
 export async function loginUser(username: string): Promise<void> {
     const data = {
       username: username,
@@ -13,9 +17,12 @@ export async function loginUser(username: string): Promise<void> {
       if (!response.ok) {
         throw new Error("Något gick fel med din inloggning");
       }
-      
+      socket.emit('user-connect', data.username);
       const responseData = await response.json();
       console.log(responseData);
+
+      userConnectSocketOn();
+      userVoteSocketOn();
     } catch (error) {
       console.error(error);
     }
