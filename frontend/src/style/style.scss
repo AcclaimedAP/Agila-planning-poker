@@ -2,6 +2,18 @@
 
 @import './normalize';
 
+* {
+    box-sizing: border-box;
+}
+
+/* * {
+  outline: 1px solid #f00 !important; // Turn on to see layout and overflowing containers better
+} */
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -39,12 +51,23 @@ body {
 *******************************************************************************/
 
 .addTaskContainer {
+    position: absolute;
+    top: 20%;
+    left: calc(50% - 10rem);
+    width: 20rem;
     display: flex;
+    gap: 0.5rem;
     flex-direction: column;
     background-color: var.$offWhite;
     border: 2px solid var.$grey;
     border-radius: 1rem;
     padding: 2rem;
+
+    textarea {
+        width: 100%;
+        height: 6rem;
+        resize: vertical;
+    }
 
     .btnContainer {
         display: flex;
@@ -55,4 +78,26 @@ body {
             padding: 0.5rem;
         }
     }
+}
+
+/*******************************************************************************
+*******************************UPCOMING TASKS LIST******************************
+*******************************************************************************/
+
+#task-list {
+    background-color: var.$offWhite;
+    border: 2px solid var.$grey;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+/*******************************************************************************
+***********************************VOTE SECTION*********************************
+*******************************************************************************/
+
+#task-to-vote-on {
+    background-color: var.$offWhite;
+    border: 2px solid var.$grey;
+    border-radius: 1rem;
+    padding: 2rem;
 }
