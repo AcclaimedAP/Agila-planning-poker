@@ -1,3 +1,5 @@
+import './style/style.css';
+
 import { io } from "socket.io-client";
 
 import { renderTaskToVoteOn } from "./modules/taskToVoteOn";
