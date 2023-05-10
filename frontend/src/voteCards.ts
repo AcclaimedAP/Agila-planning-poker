@@ -36,7 +36,7 @@ function createCardShowingVote(userVote: IVote) {
 export function createVoteCardsShowingVote() {
     const oldContainer = document.querySelector('.allVoteCardsContainer') as HTMLDivElement;
     if (oldContainer) {
-        console.log("Removing old container");
+
         
         oldContainer.remove();
     }
@@ -51,12 +51,12 @@ export function createVoteCardsShowingVote() {
 
 
 export function createVoteCards(users: string[], empty = false, showAll = false) {
-    console.log("Creating votecards");
-    console.log(users);
+
+
     
     const oldContainer = document.querySelector('.allVoteCardsContainer') as HTMLDivElement;
     if (oldContainer) {
-        console.log("Removing old container");
+
         
         oldContainer.remove();
     }
@@ -64,7 +64,7 @@ export function createVoteCards(users: string[], empty = false, showAll = false)
     container.classList.add('allVoteCardsContainer');
     var name: string | null = "";
     if (!empty) {
-        console.log("wa");
+
         
         name = sessionStorage.getItem('username');
     } 
@@ -73,11 +73,11 @@ export function createVoteCards(users: string[], empty = false, showAll = false)
         var isUser = true;
         if(!showAll) {
             isUser = (name == user);
-            console.log("wow " + isUser);
+
             
         }
         if (empty) {
-            console.log("empty");
+
             
             isUser = false;
         }

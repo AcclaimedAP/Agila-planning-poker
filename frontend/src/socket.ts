@@ -3,6 +3,7 @@ import { createVoteCards } from './voteCards';
 import { IVote } from './models/IUsers';
 import { renderTaskList } from './modules/upcomingTasksPanel';
 import { ITask } from './models/ITask';
+import { getAverageVote } from './modules/taskToVoteOn';
 const socket = io(`localhost:3000`);
 
 export function userConnectSocketOn() {
@@ -22,9 +23,17 @@ export function userVoteSocketEmit(voteValue: number) {
 
 export function userVoteSocketOn() {
     
-    socket.on('user-vote', (data: IVote) => {
+    socket.on('user-vote', (data: IVote[]) => {
         sessionStorage.setItem('votes', JSON.stringify(data));
-        console.log(data);
+        const users = JSON.parse(sessionStorage.getItem("users") ?? "");
+        if (!(data.length >= users.length)) {
+            console.log("Waiting for votes");
+            
+            return;
+        }
+        
+        sessionStorage.removeItem('votes');
+        console.log("Getting that shit " + getAverageVote(data));
         
     })
 }
