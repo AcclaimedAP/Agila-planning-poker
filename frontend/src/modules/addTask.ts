@@ -46,6 +46,7 @@ export function renderAddTaskForm() {
 
     confirmAddTaskBtn.addEventListener('click', () => {
         addTask(titleInput.value, descriptionInput.value)
+        closeAddTaskForm(addTaskContainer);
     })
 
     btnContainer.append(cancelAddTaskBtn, confirmAddTaskBtn)
