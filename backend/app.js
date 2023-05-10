@@ -14,6 +14,15 @@ server.listen(3000, () => {
   console.log("Server started on port 3000");
 });
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
@@ -23,15 +32,13 @@ const io = require("socket.io")(server, {
 
 const indexRouter = require("./routes/index");
 
-app.use(cors());
-
 const { DB_PORT } = process.env;
 
 app.locals.con = mysql.createConnection({
   host: "localhost",
   port: DB_PORT,
-  user: "billy",
-  password: "billyspw",
+  user: "root",
+  password: "root",
   database: "planning-poker-billy",
 });
 
@@ -44,9 +51,60 @@ app.get("/", (req, res) => {
   });
 });
 
+app.use("/login", express.json());
+
+let users = [];
+
+app.post("/login", (req, res) => {
+  const { username, isAdmin } = req.body;
+  const sql = `SELECT * FROM users WHERE name = '${username}'`;
+
+  app.locals.con.query(sql, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ message: "Error logging in" });
+    } else {
+      console.log(result);
+      res.json({
+        message: `'${username}' connected, great success (in Borat voice)`,
+      });
+
+      users.push(username);
+      io.emit("user-connect", users);
+    }
+  });
+});
+
+let tasks = [];
+let currentVotes = [];
+
 io.on("connection", (socket) => {
-  console.log("Connected User");
-  console.log(socket.id);
+  socket.on("add-task", (task) => {
+    tasks.push(task);
+    io.emit("add-task", tasks);
+  });
+
+  socket.on("task-to-vote-on", (task) => {
+    console.log(tasks);
+    tasks = tasks.filter(
+      (t) =>
+        t.taskTitle !== task.taskTitle ||
+        t.taskDescription !== task.taskDescription
+    );
+    io.emit("add-task", tasks);
+    io.emit("task-to-vote-on", task);
+  });
+
+  socket.on("user-connect", (username) => {
+    console.log(`${username} connected`);
+    if (!username) users.push(username);
+    io.emit("user-connect", users);
+  });
+
+  socket.on("user-vote", (voteObj) => {
+    currentVotes.push(voteObj);
+    io.emit("user-vote", currentVotes);
+  });
 });
 
 app.use(logger("dev"));
@@ -54,7 +112,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use("/", indexRouter);
 
 module.exports = app;
