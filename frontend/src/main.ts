@@ -1,4 +1,4 @@
-import './style/style.scss';
+import './style/style.css';
 
 import { io } from "socket.io-client";
 
@@ -10,6 +10,7 @@ import { ITask } from "./models/ITask";
 import { createVoteCards, createVoteCardsShowingVote } from "./voteCards";
 import { userVoteSocketOn } from "./socket";
 import { IVote } from "./models/IUsers";
+import { renderCompletedVotesContainer } from "./modules/completedVotes"
 
 
 export const socket = io('http://localhost:3000');
@@ -28,7 +29,11 @@ socket.on('connect', () => {
 
   socket.on("task-to-vote-on", (task: ITask) => {
     app?.appendChild(renderTaskToVoteOn(task));
-});
+  });
+
+  socket.on("completed-vote", (completedVotes) => {
+    app?.appendChild(renderCompletedVotesContainer(completedVotes));
+  })
 });
 
 // app?.appendChild(createLoginForm());

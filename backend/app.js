@@ -77,6 +77,13 @@ app.post("/login", (req, res) => {
 
 let tasks = [];
 let currentVotes = [];
+const completedVotes = [];
+
+completedVotes.push({
+  taskTitle: "TaskTitle",
+  taskDescription: "TaskDescription",
+  storyPoints: 5,
+});
 
 io.on("connection", (socket) => {
   socket.on("add-task", (task) => {
@@ -104,6 +111,11 @@ io.on("connection", (socket) => {
   socket.on("user-vote", (voteObj) => {
     currentVotes.push(voteObj);
     io.emit("user-vote", currentVotes);
+  });
+
+  socket.on("completed-vote", (completedVote) => {
+    completedVotes.push(completedVote);
+    io.emit("completed-vote", completedVotes);
   });
 });
 
