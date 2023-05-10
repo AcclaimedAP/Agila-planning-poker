@@ -8,8 +8,11 @@ Idag ska jag skapa sidpanelen som visar dom redan röstade på tasksen, med dera
 Det känns som att vi är lite mer på banan nu och jag har greppat socket mycket bättre.
 Vår kod är ganska stökig och det är svårt att sätta mig in i koden som jag inte har skrivit själv så vi hade nog mått bra av att ha bestämt lite mer hur vi ska skriva, även om vi använder ESLint och Prettier.
 
-### Name 2
-Lorem ipsum dolor sit amet
+### David
+Yesterday we merged some branches and fixed the bugs together that came to the surface after that.
+On the afternoon me and Nicholas tried solving another bug we found together. Not much luck.
+In the evening I continued with my issue that was to set up some basic styling.
+Today I will continue with the issue of the admin rendererd functionallity and send the completed votes to the backend.
 
 ### Name 3
 Lorem ipsum dolor sit amet
