@@ -28,6 +28,8 @@ socket.on('connect', () => {
 
   socket.on("task-to-vote-on", (task: ITask) => {
     app?.appendChild(renderTaskToVoteOn(task));
+    const data = JSON.parse(sessionStorage.getItem("users") ?? "");
+    app?.appendChild(createVoteCards(data, false, false));
 });
 });
 

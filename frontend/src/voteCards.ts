@@ -33,13 +33,14 @@ function createCardShowingVote(userVote: IVote) {
     return container;
 }
 
-export function createVoteCardsShowingVote(userVotes: IVote[]) {
+export function createVoteCardsShowingVote() {
     const oldContainer = document.querySelector('.allVoteCardsContainer') as HTMLDivElement;
     if (oldContainer) {
         console.log("Removing old container");
         
         oldContainer.remove();
     }
+    const userVotes: IVote[] = JSON.parse(sessionStorage.getItem("votes") ?? "");
     const container = document.createElement('div') as HTMLDivElement;
     container.classList.add('allVoteCardsContainer');
     for (var user of userVotes) {
