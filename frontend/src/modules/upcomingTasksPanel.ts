@@ -29,7 +29,9 @@ export function renderTaskList(tasks: ITask[]) {
                 const task = tasks[voteBtnId];
                 socket.emit("task-to-vote-on", task);
                 const users: string[] = JSON.parse(sessionStorage.getItem('users') ?? "");
-                createVoteCards(users)
+                const app = document.getElementById('app') as HTMLDivElement;
+                const data = JSON.parse(sessionStorage.getItem("users") ?? "");
+                app.appendChild(createVoteCards(data, false, false));
             }
         });
     });

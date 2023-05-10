@@ -9,8 +9,7 @@ export function userConnectSocketOn() {
     socket.on('user-connect', (data: string[]) => {
         sessionStorage.setItem('users', JSON.stringify(data));
         
-        const app = document.getElementById('app') as HTMLDivElement;
-        app.appendChild(createVoteCards(data, false, false));
+        
     });
 }
 
