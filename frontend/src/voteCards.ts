@@ -51,6 +51,7 @@ export function createVoteCardsShowingVote(userVotes: IVote[]) {
 
 export function createVoteCards(users: string[], empty = false, showAll = false) {
     console.log("Creating votecards");
+    console.log(users);
     
     const oldContainer = document.querySelector('.allVoteCardsContainer') as HTMLDivElement;
     if (oldContainer) {
@@ -62,15 +63,21 @@ export function createVoteCards(users: string[], empty = false, showAll = false)
     container.classList.add('allVoteCardsContainer');
     var name: string | null = "";
     if (!empty) {
-        name = sessionStorage.getItem('user');
+        console.log("wa");
+        
+        name = sessionStorage.getItem('username');
     } 
     
     for (var user of users) {
         var isUser = true;
         if(!showAll) {
             isUser = (name == user);
+            console.log("wow " + isUser);
+            
         }
         if (empty) {
+            console.log("empty");
+            
             isUser = false;
         }
         
