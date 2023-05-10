@@ -1,4 +1,4 @@
-import './style/style.css';
+import './style/style.scss';
 
 import { io } from "socket.io-client";
 
@@ -35,20 +35,8 @@ socket.on('connect', () => {
 
 app?.appendChild(renderAddTaskBtn());
 
-const users = ["Alex", "Jakob", "David", "Nathalie"];
 
 app?.appendChild(createLoginForm());
-const testbutton = document.createElement('button') as HTMLButtonElement;
-testbutton.innerHTML = "Test";
 
-testbutton.addEventListener('click', (e) => {
-  e.preventDefault();
-  const votes: IVote[] = JSON.parse(sessionStorage.getItem('votes')!);
-  app?.appendChild(createVoteCardsShowingVote(votes));
-})
-userVoteSocketOn();
-app?.appendChild(testbutton);
-socket.on("add-task", (tasks: ITask[]) => {
-  renderTaskList(tasks)
-});
+
 
