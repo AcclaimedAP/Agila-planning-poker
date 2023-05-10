@@ -17,18 +17,25 @@ export function renderAddTaskBtn(): HTMLButtonElement {
 export function renderAddTaskForm() {
       
     const addTaskContainer: HTMLDivElement = document.createElement('div');
+    addTaskContainer.classList.add('addTaskContainer');
 
     const titleLabel: HTMLLabelElement = document.createElement('label');
     titleLabel.innerHTML = 'Title: ';
-    const descriptionLabel: HTMLLabelElement = document.createElement('label');
-    descriptionLabel.innerHTML = 'Description: ';
     const titleInput: HTMLInputElement = document.createElement('input');
     titleInput.id = 'titleInputElement';
+
+    const descriptionLabel: HTMLLabelElement = document.createElement('label');
+    descriptionLabel.innerHTML = 'Description: ';
     const descriptionInput: HTMLTextAreaElement = document.createElement('textarea');
     descriptionInput.id = 'descriptionInputElement';
+
+    const btnContainer = document.createElement('div');
+    btnContainer.classList.add('btnContainer');
+
     const cancelAddTaskBtn = document.createElement('button');
     cancelAddTaskBtn.innerText = 'Cancel';
     cancelAddTaskBtn.id = 'cancelAddTaskBtn';
+    
     const confirmAddTaskBtn = document.createElement('button');
     confirmAddTaskBtn.innerText = 'Add';
     confirmAddTaskBtn.id = 'confirmAddTaskBtn';
@@ -41,7 +48,8 @@ export function renderAddTaskForm() {
         addTask(titleInput.value, descriptionInput.value)
     })
 
-    addTaskContainer.append(titleLabel, titleInput, descriptionLabel, descriptionInput, cancelAddTaskBtn, confirmAddTaskBtn);
+    btnContainer.append(cancelAddTaskBtn, confirmAddTaskBtn)
+    addTaskContainer.append(titleLabel, titleInput, descriptionLabel, descriptionInput, btnContainer);
 
     app?.appendChild(addTaskContainer);
 
