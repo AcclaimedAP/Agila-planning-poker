@@ -1,6 +1,8 @@
 import { io } from 'socket.io-client';
 import { createVoteCards } from './voteCards';
 import { IVote } from './models/IUsers';
+import { renderTaskList } from './modules/upcomingTasksPanel';
+import { ITask } from './models/ITask';
 const socket = io(`localhost:3000`);
 
 export function userConnectSocketOn() {
@@ -26,4 +28,9 @@ export function userVoteSocketOn() {
         console.log(data);
         
     })
+}
+export function addTaskSocketOn() {
+    socket.on("add-task", (tasks: ITask[]) => {
+        renderTaskList(tasks)
+    });
 }

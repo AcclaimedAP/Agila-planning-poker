@@ -26,9 +26,7 @@ export async function loginUser(username: string): Promise<void> {
     const responseData = await response.json();
     console.log(responseData);
 
-    userConnectSocketOn();
-    userVoteSocketOn();
-
+    
     sessionStorage.setItem("username", username);
   } catch (error) {
     console.error(error);

@@ -1,6 +1,7 @@
 import { ITask } from "../models/ITask";
 import { app } from "../main";
 import { io } from "socket.io-client";
+import { createVoteCards } from "../voteCards";
 
 const socket = io('http://localhost:3000');
 
@@ -27,6 +28,8 @@ export function renderTaskList(tasks: ITask[]) {
                 const voteBtnId = parseInt(e.target.id.split("-")[1]);
                 const task = tasks[voteBtnId];
                 socket.emit("task-to-vote-on", task);
+                const users: string[] = JSON.parse(sessionStorage.getItem('users') ?? "");
+                createVoteCards(users)
             }
         });
     });

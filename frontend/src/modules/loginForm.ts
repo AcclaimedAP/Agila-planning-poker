@@ -1,3 +1,4 @@
+import { addTaskSocketOn, userConnectSocketOn, userVoteSocketOn } from "../socket";
 import { loginUser } from "./loginUser";
 
 export function createLoginForm(): HTMLDivElement {
@@ -27,6 +28,9 @@ export function createLoginForm(): HTMLDivElement {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    userConnectSocketOn();
+    userVoteSocketOn();
+    addTaskSocketOn();
     loginUser(usernameInput.value);
 
     formContainer.remove();
