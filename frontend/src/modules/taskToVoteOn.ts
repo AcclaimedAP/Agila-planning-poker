@@ -1,5 +1,6 @@
 import { ITask } from "../models/ITask";
-import { app } from "../main";
+import { app, getConnectedUsers } from "../main";
+import { IUsers } from "../models/IUsers";
 
 export function renderTaskToVoteOn(task: ITask) {
     console.log("task");
@@ -29,3 +30,15 @@ export function renderTaskToVoteOn(task: ITask) {
     return voteSection;
 }
 
+export function renderAdminElements(users: IUsers[]) {
+
+    const user = sessionStorage.getItem('username');
+    const connectedUsers = users;
+
+    console.log("user", user)
+    console.log("connectedUsers", connectedUsers);
+    
+    console.log(connectedUsers.find(connectedUser => connectedUser.username === user))
+}
+
+// const found = array1.find(element => element > 10);

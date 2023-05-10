@@ -9,18 +9,25 @@ import { renderAddTaskBtn } from "./modules/addTask";
 import { ITask } from "./models/ITask";
 import { createVoteCards, createVoteCardsShowingVote } from "./voteCards";
 import { userVoteSocketOn } from "./socket";
-import { IVote } from "./models/IUsers";
-import { renderCompletedVotesContainer } from "./modules/completedVotes"
+import { IVote, IUsers } from "./models/IUsers";
+import { renderCompletedVotesContainer } from "./modules/completedVotes";
+import { renderAdminElements } from './modules/taskToVoteOn';
 
 
 export const socket = io('http://localhost:3000');
 export const app: HTMLElement | null = document.getElementById('app');
 
+export let connectedUsers: IUsers[] = []
+
+
 socket.on('connect', () => {
   console.log('connected', socket.id);
-  socket.on('user-connect', (arg) => {
-    console.log(arg);
-    });
+
+  socket.on('user-connect', (users) => {
+    connectedUsers = users;
+    renderAdminElements(users);
+    console.log("connectedUsers", connectedUsers);
+  });
 
   const username = sessionStorage.getItem("username");
   if (username) {
