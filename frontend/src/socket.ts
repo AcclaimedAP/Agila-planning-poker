@@ -13,7 +13,7 @@ export function userConnectSocketOn() {
 }
 
 export function userVoteSocketEmit(voteValue: number) {
-    const name = sessionStorage.getItem('user') ?? "";
+    const name = sessionStorage.getItem('username') ?? "";
     const voteObj: IVote = {name, voteValue}
     
     socket.emit('user-vote', voteObj);
