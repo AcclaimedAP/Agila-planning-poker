@@ -1,6 +1,9 @@
 import { loginUser } from "./loginUser";
 
-export function createLoginForm(): HTMLFormElement {
+export function createLoginForm(): HTMLDivElement {
+  const formContainer = document.createElement("div");
+  formContainer.classList.add("form-container");
+
   const form = document.createElement("form");
   form.classList.add("login-form");
 
@@ -20,11 +23,14 @@ export function createLoginForm(): HTMLFormElement {
   loginButton.textContent = "Logga in";
 
   form.append(loginHeader, usernameInput, loginButton);
+  formContainer.appendChild(form);
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     loginUser(usernameInput.value);
+
+    formContainer.remove();
   });
 
-  return form;
+  return formContainer;
 };
