@@ -27,14 +27,14 @@ export function userVoteSocketOn() {
         sessionStorage.setItem('votes', JSON.stringify(data));
         const users = JSON.parse(sessionStorage.getItem("users") ?? "");
         if (!(data.length >= users.length)) {
-            console.log("Waiting for votes");
-            
             return;
         }
         
         sessionStorage.removeItem('votes');
-        console.log("Getting that shit " + getAverageVote(data));
-        
+        const container = document.getElementById('task-to-vote-on');
+        const voteText = document.createElement('h3');
+        voteText.innerHTML = `Average vote: ${getAverageVote(data)}`;
+        container?.appendChild(voteText);
     })
 }
 export function addTaskSocketOn() {

@@ -35,70 +35,36 @@ export function getAverageVote(votes: IVote[]) {
     for (var vote of votes) {
         sum += vote.voteValue;
     }
-    return returnNearestFibonacci(sum / votes.length);
+    const average = returnNearestFibonacci(sum / votes.length);
+    
+    
+    return average;
 }
 function returnNearestFibonacci(num: number) {
     const numRound = Math.round(num);
+    
     const diff = num - numRound;
+    console.log(numRound);;
+    
     if (diff >= 0) {
-        switch (num) {
-            case 1:
-                return 1;
-                break;
-            case 2:
-                return 1;
-                break;
-            case 3:
-                return 3;
-                break;
-            case 4:
-                return 3;
-                break;
-            case 5:
-                return 5;
-                break;
-            case 6:
-                return 5;
-                break;
-            case 7:
-                return 8;
-                break;
-            case 8:
-                return 8;
-                break;
-            default:
-                return 0;
-                break;
+        if (num < 3) {
+            return 1;
+        } else if (num < 5) {
+            return 3;
+        } else if (num < 7) {
+            return 5;
+        } else {
+            return 8;
         }
     } else {
-        switch (num) {
-            case 1:
-                return 1;
-                break;
-            case 2:
-                return 3;
-                break;
-            case 3:
-                return 3;
-                break;
-            case 4:
-                return 5;
-                break;
-            case 5:
-                return 5;
-                break;
-            case 6:
-                return 5;
-                break;
-            case 7:
-                return 8;
-                break;
-            case 8:
-                return 8;
-                break;
-            default:
-                return 0;
-                break;
+        if (num < 2) {
+            return 1;
+        } else if (num < 4) {
+            return 3;
+        } else if (num < 7) {
+            return 5;
+        } else {
+            return 8;
         }
     }
     
