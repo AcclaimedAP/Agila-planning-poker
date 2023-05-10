@@ -33,7 +33,10 @@ socket.on('connect', () => {
 
   socket.on("completed-vote", (completedVotes) => {
     app?.appendChild(renderCompletedVotesContainer(completedVotes));
-  })
+  });
+  
+    const data = JSON.parse(sessionStorage.getItem("users") ?? "");
+    app?.appendChild(createVoteCards(data, false, false));
 });
 
 // app?.appendChild(createLoginForm());
