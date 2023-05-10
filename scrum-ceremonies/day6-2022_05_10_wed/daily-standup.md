@@ -3,8 +3,10 @@
 ## Wazzup?
 > Yesterday I…, today I will…, I need help with…, I'm stuck with…, TIL…
 
-### Name 1
-Lorem ipsum dolor sit amet
+### Nicholas
+Idag ska jag skapa sidpanelen som visar dom redan röstade på tasksen, med deras titel och antalet story points som bestämdes för dom. Jag ska även göra dom klickbara så att man kan se deras description om man vill.
+Det känns som att vi är lite mer på banan nu och jag har greppat socket mycket bättre.
+Vår kod är ganska stökig och det är svårt att sätta mig in i koden som jag inte har skrivit själv så vi hade nog mått bra av att ha bestämt lite mer hur vi ska skriva, även om vi använder ESLint och Prettier.
 
 ### Name 2
 Lorem ipsum dolor sit amet
