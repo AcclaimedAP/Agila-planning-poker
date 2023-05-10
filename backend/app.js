@@ -79,12 +79,6 @@ let tasks = [];
 let currentVotes = [];
 const completedVotes = [];
 
-completedVotes.push({
-  taskTitle: "TaskTitle",
-  taskDescription: "TaskDescription",
-  storyPoints: 5,
-});
-
 io.on("connection", (socket) => {
   socket.on("add-task", (task) => {
     tasks.push(task);
