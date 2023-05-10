@@ -97,8 +97,8 @@ io.on("connection", (socket) => {
 
   socket.on("user-connect", (username) => {
     console.log(`${username} connected`);
-    users.push(username);
-    io.emit("user-connect", ({ username }, users));
+    if (!username) users.push(username);
+    io.emit("user-connect", users);
   });
 
   socket.on("user-vote", (voteObj) => {
