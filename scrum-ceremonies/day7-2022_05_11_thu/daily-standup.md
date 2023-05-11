@@ -9,8 +9,10 @@ Eftersom vi började samtidigt så snackade vi ihop oss om strukturen på hans a
 Idag ska vi mobprogrammera en del för att försöka lösa problem som vi har fastnat med, och sedan jobba vidare med våra egna issues.
 Jag ska försöka mig på att refaktorera lite, jag tror att jag förstår flödet i vår applikation för att iaf göra en liten förbättring... Det får duga!
 
-### Name 2
-Lorem ipsum dolor sit amet
+### David
+Igår skrev jag min Daily standup report på engelska av någon anledning. Intressant. 😃 Jobbade vidare igår i alla fall med lite funktionalitet på admin sidan där man ska kunna skicka färdigröstade kort vidare som plockas upp och rendreras utav en annan funktion som Nicholas skulle bygga på. Kommunikationen däremellan fungerade superbra och vi visste båda hur det skulle kopplas när det var färdigt.
+Jag stötte däremot på lite problem med att få ut om admin var inloggad för att kunna komma vidare men det tittade jag och Nicholas på tillsammans och refaktorerade lite kod på vägen och tillslut kom vi frammåt.
+Idag så blir det par/mob programmering för att lösa buggar och få till den sista funktionaliteten innan jag sätter mig ner i kväll och försöker lösa den sista stylingen så vi har en produkt man i alla fall kan titta rakt på att visa på demon imorgon.
 
 ### Name 3
 Lorem ipsum dolor sit amet
