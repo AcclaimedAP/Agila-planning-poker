@@ -8,6 +8,8 @@ const socket = io(`localhost:3000`);
 export function userConnectSocketOn() {
     socket.on('user-connect', (data: string[]) => {
         sessionStorage.setItem('users', JSON.stringify(data));
+        
+        
     });
 }
 

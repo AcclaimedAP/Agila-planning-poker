@@ -1,4 +1,4 @@
-import './style/style.css';
+import './style/style.scss';
 
 import { io } from "socket.io-client";
 
@@ -9,25 +9,17 @@ import { renderAddTaskBtn } from "./modules/addTask";
 import { ITask } from "./models/ITask";
 import { createVoteCards, createVoteCardsShowingVote } from "./voteCards";
 import { userVoteSocketOn } from "./socket";
-import { IVote, IUser } from "./models/IUsers";
-import { renderCompletedVotesContainer } from "./modules/completedVotes";
-import { getCurrentUser } from './modules/taskToVoteOn';
+import { IVote } from "./models/IUsers";
 
 
 export const socket = io('http://localhost:3000');
 export const app: HTMLElement | null = document.getElementById('app');
 
-export let connectedUsers: IUser[] = []
-
-
 socket.on('connect', () => {
   console.log('connected', socket.id);
-
-  socket.on('user-connect', (users) => {
-    connectedUsers = users;
-    getCurrentUser(users);
-    console.log("connectedUsers", connectedUsers);
-  });
+  socket.on('user-connect', (arg) => {
+    console.log(arg);
+    });
 
   const username = sessionStorage.getItem("username");
   if (username) {
@@ -36,14 +28,9 @@ socket.on('connect', () => {
 
   socket.on("task-to-vote-on", (task: ITask) => {
     app?.appendChild(renderTaskToVoteOn(task));
-  });
-
-  socket.on("completed-vote", (completedVotes) => {
-    app?.appendChild(renderCompletedVotesContainer(completedVotes));
-  });
-  
     const data = JSON.parse(sessionStorage.getItem("users") ?? "");
     app?.appendChild(createVoteCards(data, false, false));
+});
 });
 
 // app?.appendChild(createLoginForm());
