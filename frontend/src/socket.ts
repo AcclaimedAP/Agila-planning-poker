@@ -31,7 +31,7 @@ export function userVoteSocketOn() {
         const container = document.getElementById('task-to-vote-on');
         const voteText = document.createElement('h3');
         voteText.innerHTML = `Average vote: ${getAverageVote(data)}`;
-        container?.appendChild(voteText);
+        container?.append(voteText);
     })
 }
 
