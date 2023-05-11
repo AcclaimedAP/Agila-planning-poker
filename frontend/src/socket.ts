@@ -40,3 +40,12 @@ export function addTaskSocketOn() {
         renderTaskList(tasks)
     });
 }
+
+export function clearVotesSocketOn() {
+    socket.on("clear-votes", () => {
+        sessionStorage.removeItem("votes");
+    });
+}
+export function clearVotesSocketEmit() {
+    socket.emit("clear-votes", true);
+}

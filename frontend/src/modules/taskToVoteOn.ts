@@ -4,6 +4,7 @@ import { app } from "../main";
 import { IUser } from "../models/IUser";
 import { IVotedOnTask } from "../models/IVotedOnTask";
 import { IVote } from "../models/IVote";
+import { clearVotesSocketEmit } from '../socket';
 
 const socket = io(`localhost:3000`);
 
@@ -33,7 +34,8 @@ export function renderTaskToVoteOn(task: ITask) {
         doneBtn.innerText = 'Done'
 
         doneBtn.addEventListener('click', () => {
-          doneVote(taskTitle.innerText, taskDescription.innerText, decidedStoryPointsInput.value);
+            doneVote(taskTitle.innerText, taskDescription.innerText, decidedStoryPointsInput.value);
+            clearVotesSocketEmit();
         });
 
         const decidedStoryPointsInput = document.createElement('input');
