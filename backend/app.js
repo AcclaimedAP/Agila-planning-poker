@@ -56,8 +56,8 @@ app.use("/login", express.json());
 let users = [];
 
 app.post("/login", (req, res) => {
-  const user = req.body
-  const sql = `SELECT * FROM users WHERE name = '${user.username}'`;
+  const { username, isAdmin } = req.body;
+  const sql = `SELECT * FROM users WHERE name = '${username}'`;
 
   app.locals.con.query(sql, (err, result) => {
     if (err) {
@@ -66,10 +66,10 @@ app.post("/login", (req, res) => {
     } else {
       console.log(result);
       res.json({
-        message: `'${result.username}' connected, great success (in Borat voice)`,
+        message: `'${username}' connected, great success (in Borat voice)`,
       });
 
-      users.push(user);
+      users.push(username);
       io.emit("user-connect", users);
     }
   });
@@ -77,7 +77,6 @@ app.post("/login", (req, res) => {
 
 let tasks = [];
 let currentVotes = [];
-const completedVotes = [];
 
 io.on("connection", (socket) => {
   socket.on("add-task", (task) => {
@@ -98,18 +97,13 @@ io.on("connection", (socket) => {
 
   socket.on("user-connect", (username) => {
     console.log(`${username} connected`);
-    // if (!username) users.push(username);
+    if (!username) users.push(username);
     io.emit("user-connect", users);
   });
 
   socket.on("user-vote", (voteObj) => {
     currentVotes.push(voteObj);
     io.emit("user-vote", currentVotes);
-  });
-
-  socket.on("completed-vote", (completedVote) => {
-    completedVotes.push(completedVote);
-    io.emit("completed-vote", completedVotes);
   });
 });
 

@@ -1,16 +1,13 @@
 import { userConnectSocketOn, userVoteSocketOn } from "../socket";
-import { connectedUsers } from "../main"
-import { renderAdminElements } from "./taskToVoteOn";
 
 export async function loginUser(username: string): Promise<void> {
-
-  const user = {
+  const data = {
     username: username,
     isAdmin: false,
   };
 
   if (username === "admin") {
-    user.isAdmin = true;
+    data.isAdmin = true;
   }
 
   try {
@@ -19,7 +16,7 @@ export async function loginUser(username: string): Promise<void> {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(data),
     });
 
     if (!response.ok) {

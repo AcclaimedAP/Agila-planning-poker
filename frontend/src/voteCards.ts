@@ -1,6 +1,6 @@
-import { IUser, IVote, IUsers } from "./models/IUsers";
+import { IUser, IVote } from "./models/IUsers";
 import { userVoteSocketEmit } from "./socket";
-import { connectedUsers } from "./main";
+
 
 function createCard(user: string, buttons = false) {
     const container = document.createElement('div') as HTMLDivElement;
@@ -50,9 +50,9 @@ export function createVoteCardsShowingVote() {
 }
 
 
-export function createVoteCards(connectedUsers: IUsers[], empty = false, showAll = false) {
+export function createVoteCards(users: string[], empty = false, showAll = false) {
     console.log("Creating votecards");
-    console.log(connectedUsers);
+    console.log(users);
     
     const oldContainer = document.querySelector('.allVoteCardsContainer') as HTMLDivElement;
     if (oldContainer) {
@@ -69,18 +69,20 @@ export function createVoteCards(connectedUsers: IUsers[], empty = false, showAll
         name = sessionStorage.getItem('username');
     } 
     
-    for (var user of connectedUsers) {
+    for (var user of users) {
         var isUser = true;
         if(!showAll) {
-            isUser = (name == user.username);
+            isUser = (name == user);
             console.log("wow " + isUser);
+            
         }
         if (empty) {
             console.log("empty");
+            
             isUser = false;
         }
         
-        container.appendChild(createCard(user.username, isUser));
+        container.appendChild(createCard(user, isUser));
     }
 
     return container;
