@@ -1,7 +1,7 @@
 import { ITask } from "../models/ITask";
 import { app } from "../main";
 import { io } from "socket.io-client";
-import { createVoteCards } from "../voteCards";
+import { createVoteCards } from "./voteCards";
 
 const socket = io('http://localhost:3000');
 

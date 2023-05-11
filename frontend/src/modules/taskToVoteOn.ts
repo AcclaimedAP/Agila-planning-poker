@@ -1,14 +1,15 @@
 import { io } from 'socket.io-client';
 import { ITask } from "../models/ITask";
 import { app } from "../main";
-import { IUser } from "../models/IUsers";
+import { IUser } from "../models/IUser";
 import { IVotedOnTask } from "../models/IVotedOnTask";
+import { IVote } from "../models/IVote";
+
 const socket = io(`localhost:3000`);
-import { IVote } from "../models/IUsers";
+
+let currentUser: IUser | undefined;
 
 export function renderTaskToVoteOn(task: ITask) {
-    console.log("task");
-    
     const existingVoteSection = document.getElementById("vote-section");
 
     const voteSection = existingVoteSection ? existingVoteSection : document.createElement("section");
@@ -40,9 +41,8 @@ export function renderTaskToVoteOn(task: ITask) {
         decidedStoryPointsInput.type = 'number';
         decidedStoryPointsInput.id = 'decidedStoryPointsInput';
 
-
         taskToVoteOn.append(decidedStoryPointsInput, doneBtn);
-  }
+    }
 
     if (!existingVoteSection) {
         app?.append(voteSection);
@@ -52,16 +52,12 @@ export function renderTaskToVoteOn(task: ITask) {
 }
 
 export function getCurrentUser(users: IUser[]) {
-
     const user = sessionStorage.getItem('username');
     const connectedUsers = users;
     currentUser = connectedUsers.find(connectedUser => connectedUser.username === user);
 }
 
-let currentUser: IUser | undefined
-
 function doneVote(title: string, description: string, points: any) {
-
     const completedVote: IVotedOnTask = {
         taskTitle: title,
         taskDescription: description,
@@ -77,9 +73,9 @@ export function getAverageVote(votes: IVote[]) {
     }
     const average = returnNearestFibonacci(sum / votes.length);
     
-    
     return average;
 }
+
 function returnNearestFibonacci(num: number) {
     const numRound = Math.round(num);
     
@@ -107,5 +103,4 @@ function returnNearestFibonacci(num: number) {
             return 8;
         }
     }
-    
 }

@@ -1,11 +1,11 @@
-import { IUser, IVote, IUsers } from "./models/IUsers";
-import { userVoteSocketEmit } from "./socket";
-import { connectedUsers } from "./main";
+import { IUser } from "../models/IUser";
+import { IVote } from "../models/IVote";
+import { userVoteSocketEmit } from "../socket";
 
 function createCard(user: string, buttons = false) {
     const container = document.createElement('div') as HTMLDivElement;
     container.innerHTML = `
-    <h2>${user}</h2>
+        <h2>${user}</h2>
     `;
     if (!buttons) {
         return container;
@@ -24,11 +24,12 @@ function createCard(user: string, buttons = false) {
     }
     return container;
 }
+
 function createCardShowingVote(userVote: IVote) {
     const container = document.createElement('div') as HTMLDivElement;
     container.innerHTML = `
-    <h2>${userVote.name}</h2><br>
-    <h3>${userVote.voteValue.toString()}</h3>
+        <h2>${userVote.name}</h2><br>
+        <h3>${userVote.voteValue.toString()}</h3>
     `;
     return container;
 }
@@ -49,7 +50,7 @@ export function createVoteCardsShowingVote() {
     return container;
 }
 
-export function createVoteCards(connectedUsers: IUsers[], empty = false, showAll = false) {
+export function createVoteCards(connectedUsers: IUser[], empty = false, showAll = false) {
     const oldContainer = document.querySelector('.allVoteCardsContainer') as HTMLDivElement;
     if (oldContainer) {
         oldContainer.remove();

@@ -1,18 +1,14 @@
 import './style/style.css';
 
 import { io } from "socket.io-client";
-
 import { renderTaskToVoteOn } from "./modules/taskToVoteOn";
-import { renderTaskList } from "./modules/upcomingTasksPanel";
 import { createLoginForm } from "./modules/loginForm";
 import { renderAddTaskBtn } from "./modules/addTask";
 import { ITask } from "./models/ITask";
-import { createVoteCards, createVoteCardsShowingVote } from "./voteCards";
-import { userVoteSocketOn } from "./socket";
-import { IVote, IUser } from "./models/IUsers";
+import { createVoteCards } from "./modules/voteCards";
+import { IUser } from "./models/IUser";
 import { renderCompletedVotesContainer } from "./modules/completedVotes";
 import { getCurrentUser } from './modules/taskToVoteOn';
-
 
 export const socket = io('http://localhost:3000');
 export const app: HTMLElement | null = document.getElementById('app');
@@ -29,11 +25,6 @@ socket.on('connect', () => {
     console.log("connectedUsers", connectedUsers);
   });
 
-  const username = sessionStorage.getItem("username");
-  if (username) {
-    socket.emit("user-connect", username);
-  }
-
   socket.on("task-to-vote-on", (task: ITask) => {
     app?.appendChild(renderTaskToVoteOn(task));
     const users = JSON.parse(sessionStorage.getItem('users') ?? "");
@@ -48,12 +39,5 @@ socket.on('connect', () => {
     app?.appendChild(createVoteCards(data, false, false));
 });
 
-// app?.appendChild(createLoginForm());
-
 app?.appendChild(renderAddTaskBtn());
-
-
 app?.appendChild(createLoginForm());
-
-
-
