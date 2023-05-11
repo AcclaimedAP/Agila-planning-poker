@@ -9,15 +9,15 @@ import { renderAddTaskBtn } from "./modules/addTask";
 import { ITask } from "./models/ITask";
 import { createVoteCards, createVoteCardsShowingVote } from "./voteCards";
 import { userVoteSocketOn } from "./socket";
-import { IVote, IUsers } from "./models/IUsers";
+import { IVote, IUser } from "./models/IUsers";
 import { renderCompletedVotesContainer } from "./modules/completedVotes";
-import { renderAdminElements } from './modules/taskToVoteOn';
+import { getCurrentUser } from './modules/taskToVoteOn';
 
 
 export const socket = io('http://localhost:3000');
 export const app: HTMLElement | null = document.getElementById('app');
 
-export let connectedUsers: IUsers[] = []
+export let connectedUsers: IUser[] = []
 
 
 socket.on('connect', () => {
@@ -25,7 +25,7 @@ socket.on('connect', () => {
 
   socket.on('user-connect', (users) => {
     connectedUsers = users;
-    renderAdminElements(users);
+    getCurrentUser(users);
     console.log("connectedUsers", connectedUsers);
   });
 
