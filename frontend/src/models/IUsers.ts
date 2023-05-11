@@ -1,7 +1,8 @@
 export interface IUser {
-    id: string;
-    name: string;
+    username: string;
+    isAdmin: boolean;
 }
+
 export interface IVote {
     name: string;
     voteValue: number;
