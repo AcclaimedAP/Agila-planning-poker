@@ -7,7 +7,7 @@ import { IVote } from "../models/IVote";
 
 const socket = io(`localhost:3000`);
 
-let currentUser: IUser | undefined;
+export let currentUser: IUser | undefined;
 
 export function renderTaskToVoteOn(task: ITask) {
     const existingVoteSection = document.getElementById("vote-section");

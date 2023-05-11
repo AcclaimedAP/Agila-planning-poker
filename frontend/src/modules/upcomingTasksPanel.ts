@@ -2,6 +2,7 @@ import { ITask } from "../models/ITask";
 import { app } from "../main";
 import { io } from "socket.io-client";
 import { createVoteCards } from "./voteCards";
+import { currentUser } from "./taskToVoteOn";
 
 const socket = io('http://localhost:3000');
 
@@ -17,22 +18,23 @@ export function renderTaskList(tasks: ITask[]) {
         taskItem.innerText = task.taskTitle;
         taskItem.id = `task-${i}`;
         taskList.appendChild(taskItem);
-
-        const voteBtn = document.createElement("button");
-        voteBtn.innerText = "Choose";
-        voteBtn.id = `vote-${i}`;
-        taskList.appendChild(voteBtn);
-
-        voteBtn.addEventListener("click", (e: Event) => {
-            if (e.target instanceof HTMLElement) {
-                const voteBtnId = parseInt(e.target.id.split("-")[1]);
-                const task = tasks[voteBtnId];
-                socket.emit("task-to-vote-on", task);
-                const app = document.getElementById('app') as HTMLDivElement;
-                const data = JSON.parse(sessionStorage.getItem("users") ?? "");
-                app.appendChild(createVoteCards(data, false, false));
-            }
-        });
+        if (currentUser?.isAdmin) {
+            const voteBtn = document.createElement("button");
+            voteBtn.innerText = "Choose";
+            voteBtn.id = `vote-${i}`;
+            taskList.appendChild(voteBtn);
+    
+            voteBtn.addEventListener("click", (e: Event) => {
+                if (e.target instanceof HTMLElement) {
+                    const voteBtnId = parseInt(e.target.id.split("-")[1]);
+                    const task = tasks[voteBtnId];
+                    socket.emit("task-to-vote-on", task);
+                    const app = document.getElementById('app') as HTMLDivElement;
+                    const data = JSON.parse(sessionStorage.getItem("users") ?? "");
+                    app.appendChild(createVoteCards(data, false, false));
+                }
+            });
+        }
     });
 
     if (!existingTaskList) {
