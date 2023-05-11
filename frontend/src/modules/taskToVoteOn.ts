@@ -1,5 +1,9 @@
+import { io } from 'socket.io-client';
 import { ITask } from "../models/ITask";
 import { app } from "../main";
+import { IUser } from "../models/IUsers";
+import { IVotedOnTask } from "../models/IVotedOnTask";
+const socket = io(`localhost:3000`);
 import { IVote } from "../models/IUsers";
 
 export function renderTaskToVoteOn(task: ITask) {
@@ -23,11 +27,47 @@ export function renderTaskToVoteOn(task: ITask) {
     taskDescription.innerText = task.taskDescription;
     taskToVoteOn.appendChild(taskDescription);
 
+    if(currentUser?.isAdmin){
+        const doneBtn = document.createElement('button');
+        doneBtn.innerText = 'Done'
+
+        doneBtn.addEventListener('click', () => {
+          doneVote(taskTitle.innerText, taskDescription.innerText, decidedStoryPointsInput.value);
+        });
+
+        const decidedStoryPointsInput = document.createElement('input');
+        decidedStoryPointsInput.placeholder = 'Decided Story Points';
+        decidedStoryPointsInput.type = 'number';
+        decidedStoryPointsInput.id = 'decidedStoryPointsInput';
+
+
+        taskToVoteOn.append(decidedStoryPointsInput, doneBtn);
+  }
+
     if (!existingVoteSection) {
-        app?.appendChild(voteSection);
+        app?.append(voteSection);
     }
 
     return voteSection;
+}
+
+export function getCurrentUser(users: IUser[]) {
+
+    const user = sessionStorage.getItem('username');
+    const connectedUsers = users;
+    currentUser = connectedUsers.find(connectedUser => connectedUser.username === user);
+}
+
+let currentUser: IUser | undefined
+
+function doneVote(title: string, description: string, points: any) {
+
+    const completedVote: IVotedOnTask = {
+        taskTitle: title,
+        taskDescription: description,
+        storyPoints: parseInt(points)
+    }
+    socket.emit('completed-vote', completedVote);
 }
 
 export function getAverageVote(votes: IVote[]) {

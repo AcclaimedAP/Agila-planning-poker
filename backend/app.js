@@ -56,8 +56,8 @@ app.use("/login", express.json());
 let users = [];
 
 app.post("/login", (req, res) => {
-  const { username, isAdmin } = req.body;
-  const sql = `SELECT * FROM users WHERE name = '${username}'`;
+  const user = req.body
+  const sql = `SELECT * FROM users WHERE name = '${user.username}'`;
 
   app.locals.con.query(sql, (err, result) => {
     if (err) {
@@ -66,10 +66,10 @@ app.post("/login", (req, res) => {
     } else {
       console.log(result);
       res.json({
-        message: `'${username}' connected, great success (in Borat voice)`,
+        message: `'${result.username}' connected, great success (in Borat voice)`,
       });
 
-      users.push(username);
+      users.push(user);
       io.emit("user-connect", users);
     }
   });
@@ -98,7 +98,7 @@ io.on("connection", (socket) => {
 
   socket.on("user-connect", (username) => {
     console.log(`${username} connected`);
-    if (!username) users.push(username);
+    // if (!username) users.push(username);
     io.emit("user-connect", users);
   });
 
