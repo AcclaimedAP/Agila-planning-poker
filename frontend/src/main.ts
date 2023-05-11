@@ -15,7 +15,7 @@ import { renderCompletedVotesContainer } from "./modules/completedVotes"
 
 export const socket = io('http://localhost:3000');
 export const app: HTMLElement | null = document.getElementById('app');
-
+sessionStorage.clear();
 socket.on('connect', () => {
   console.log('connected', socket.id);
   socket.on('user-connect', (arg) => {
@@ -29,6 +29,8 @@ socket.on('connect', () => {
 
   socket.on("task-to-vote-on", (task: ITask) => {
     app?.appendChild(renderTaskToVoteOn(task));
+    const users = JSON.parse(sessionStorage.getItem('users') ?? "");
+    app?.appendChild(createVoteCards(users))
   });
 
   socket.on("completed-vote", (completedVotes) => {
