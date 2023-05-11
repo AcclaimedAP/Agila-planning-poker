@@ -39,5 +39,4 @@ socket.on('connect', () => {
     app?.appendChild(createVoteCards(data, false, false));
 });
 
-app?.appendChild(renderAddTaskBtn());
 app?.appendChild(createLoginForm());
