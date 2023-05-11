@@ -1,5 +1,6 @@
-import { IUser, IVote } from "./models/IUser";
-import { userVoteSocketEmit } from "./socket";
+import { IUser } from "../models/IUser";
+import { IVote } from "../models/IVote";
+import { userVoteSocketEmit } from "../socket";
 
 function createCard(user: string, buttons = false) {
     const container = document.createElement('div') as HTMLDivElement;

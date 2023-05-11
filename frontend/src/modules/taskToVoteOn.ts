@@ -3,7 +3,7 @@ import { ITask } from "../models/ITask";
 import { app } from "../main";
 import { IUser } from "../models/IUser";
 import { IVotedOnTask } from "../models/IVotedOnTask";
-import { IVote } from "../models/IUser";
+import { IVote } from "../models/IVote";
 
 const socket = io(`localhost:3000`);
 

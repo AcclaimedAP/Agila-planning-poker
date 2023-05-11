@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client';
-import { IVote } from './models/IUser';
+import { IVote } from "./models/IVote";
 import { renderTaskList } from './modules/upcomingTasksPanel';
 import { ITask } from './models/ITask';
 import { getAverageVote } from './modules/taskToVoteOn';

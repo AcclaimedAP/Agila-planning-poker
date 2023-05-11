@@ -5,7 +5,7 @@ import { renderTaskToVoteOn } from "./modules/taskToVoteOn";
 import { createLoginForm } from "./modules/loginForm";
 import { renderAddTaskBtn } from "./modules/addTask";
 import { ITask } from "./models/ITask";
-import { createVoteCards } from "./voteCards";
+import { createVoteCards } from "./modules/voteCards";
 import { IUser } from "./models/IUser";
 import { renderCompletedVotesContainer } from "./modules/completedVotes";
 import { getCurrentUser } from './modules/taskToVoteOn';

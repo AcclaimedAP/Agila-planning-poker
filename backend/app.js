@@ -32,15 +32,6 @@ const io = require("socket.io")(server, {
 
 const indexRouter = require("./routes/index");
 
-// app.get("/", (req, res) => {
-//   const sql = "SELECT * FROM users";
-//   app.locals.con.query(sql, (err, result) => {
-//     if (err) throw err;
-//     console.log(result);
-//     res.send(result);
-//   });
-// });
-
 app.use("/login", express.json());
 
 let users = [];
