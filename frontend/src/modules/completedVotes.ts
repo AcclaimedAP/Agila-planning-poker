@@ -15,6 +15,7 @@ export function renderCompletedVotesContainer(completedVotes: IVotedOnTask[]) {
 
       li.addEventListener("click", () => {
         const expandedCompletedVote = document.createElement("div");
+        expandedCompletedVote.classList.add('expandedCompletedVote');
 
         const taskTitle = completedVote.taskTitle;
         const taskDescription = completedVote.taskDescription;
@@ -23,13 +24,26 @@ export function renderCompletedVotesContainer(completedVotes: IVotedOnTask[]) {
         expandedCompletedVote.innerHTML = `
           <h2>${taskTitle}</h2>
           <p>${taskDescription}</p>
-          <p>${storyPoints} SP</p>
+          <p>${storyPoints} SP</p><br>
+          <button id="closeBtn">Close</button>
         `;
-        app?.appendChild(expandedCompletedVote);
+
+        
+        app?.append(expandedCompletedVote);
+        
+        const closeBtn = document.getElementById('closeBtn');
+
+        closeBtn?.addEventListener('click', () => {
+          closeExpandedView(expandedCompletedVote)
       });
     });
+  })
+  completedVotesContainer.appendChild(completedVotesUl)
 
-    completedVotesContainer.appendChild(completedVotesUl)
+  return completedVotesContainer;
+}
 
-    return completedVotesContainer;
-  }
+function closeExpandedView(expandedCompletedVote: HTMLDivElement) {
+
+  app?.removeChild(expandedCompletedVote)
+}
