@@ -1,8 +1,7 @@
 import { io } from "socket.io-client";
 
-const app: HTMLElement | null = document.getElementById('app');
-
 const socket = io('http://localhost:3000')
+const app: HTMLElement | null = document.getElementById('app');
 
 export function renderAddTaskBtn(): HTMLButtonElement {
 
@@ -53,7 +52,6 @@ export function renderAddTaskForm() {
     addTaskContainer.append(titleLabel, titleInput, descriptionLabel, descriptionInput, btnContainer);
 
     app?.appendChild(addTaskContainer);
-
 }
 
 function closeAddTaskForm(addTaskContainer: HTMLDivElement) {

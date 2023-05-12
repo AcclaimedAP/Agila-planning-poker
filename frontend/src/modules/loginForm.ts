@@ -1,4 +1,4 @@
-import { addTaskSocketOn, userConnectSocketOn, userVoteSocketOn } from "../socket";
+import { addTaskSocketOn, clearVotesSocketOn, userConnectSocketOn, userVoteSocketOn } from "../socket";
 import { loginUser } from "./loginUser";
 
 export function createLoginForm(): HTMLDivElement {
@@ -10,7 +10,7 @@ export function createLoginForm(): HTMLDivElement {
 
   const loginHeader = document.createElement("h1");
   loginHeader.classList.add("login-header");
-  loginHeader.textContent = "Logga in!"
+  loginHeader.textContent = "Log in!"
 
   const usernameInput = document.createElement("input");
   usernameInput.classList.add("login-input");
@@ -21,7 +21,7 @@ export function createLoginForm(): HTMLDivElement {
   const loginButton = document.createElement("button");
   loginButton.classList.add("login-button");
   loginButton.type = "submit";
-  loginButton.textContent = "Logga in";
+  loginButton.textContent = "Log in";
 
   form.append(loginHeader, usernameInput, loginButton);
   formContainer.appendChild(form);
@@ -31,6 +31,7 @@ export function createLoginForm(): HTMLDivElement {
     userConnectSocketOn();
     userVoteSocketOn();
     addTaskSocketOn();
+    clearVotesSocketOn();
     loginUser(usernameInput.value);
 
     formContainer.remove();

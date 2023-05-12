@@ -32,51 +32,12 @@ const io = require("socket.io")(server, {
 
 const indexRouter = require("./routes/index");
 
-const { DB_PORT } = process.env;
-
-app.locals.con = mysql.createConnection({
-  host: "localhost",
-  port: DB_PORT,
-  user: "root",
-  password: "root",
-  database: "planning-poker-billy",
-});
-
-app.get("/", (req, res) => {
-  const sql = "SELECT * FROM users";
-  app.locals.con.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log(result);
-    res.send(result);
-  });
-});
-
 app.use("/login", express.json());
 
 let users = [];
-
-app.post("/login", (req, res) => {
-  const { username, isAdmin } = req.body;
-  const sql = `SELECT * FROM users WHERE name = '${username}'`;
-
-  app.locals.con.query(sql, (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ message: "Error logging in" });
-    } else {
-      console.log(result);
-      res.json({
-        message: `'${username}' connected, great success (in Borat voice)`,
-      });
-
-      users.push(username);
-      io.emit("user-connect", users);
-    }
-  });
-});
-
 let tasks = [];
 let currentVotes = [];
+const completedVotes = [];
 
 io.on("connection", (socket) => {
   socket.on("add-task", (task) => {
@@ -95,9 +56,8 @@ io.on("connection", (socket) => {
     io.emit("task-to-vote-on", task);
   });
 
-  socket.on("user-connect", (username) => {
-    console.log(`${username} connected`);
-    if (!username) users.push(username);
+  socket.on("user-connect", (user) => {
+    users.push(user);
     io.emit("user-connect", users);
   });
 
@@ -105,6 +65,18 @@ io.on("connection", (socket) => {
     currentVotes.push(voteObj);
     io.emit("user-vote", currentVotes);
   });
+
+  socket.on("completed-vote", (completedVote) => {
+    completedVotes.push(completedVote);
+    io.emit("completed-vote", completedVotes);
+  });
+
+  socket.on("clear-votes", (arg) => {
+    if (arg) {
+      currentVotes = [];
+    }
+    io.emit("clear-votes");
+  })
 });
 
 app.use(logger("dev"));
