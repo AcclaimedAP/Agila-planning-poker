@@ -14,8 +14,9 @@ Igår skrev jag min Daily standup report på engelska av någon anledning. Intre
 Jag stötte däremot på lite problem med att få ut om admin var inloggad för att kunna komma vidare men det tittade jag och Nicholas på tillsammans och refaktorerade lite kod på vägen och tillslut kom vi frammåt.
 Idag så blir det par/mob programmering för att lösa buggar och få till den sista funktionaliteten innan jag sätter mig ner i kväll och försöker lösa den sista stylingen så vi har en produkt man i alla fall kan titta rakt på att visa på demon imorgon.
 
-### Name 3
-Lorem ipsum dolor sit amet
+### Alexander
+Igår satt jag mest med mera funktionalitet av votes och sånt.
+Idag ska jag se till att fixa flödet lite så att det går att fortsätta efter att man har gjort en vote!
 
 ### Filip
 Igår gick inte någonting bra! Jag satt med mitt issue och försökte lösa det till sent på natten men kom upp kort. Gör om gör rätt. 
