@@ -52,7 +52,6 @@ export function renderAddTaskForm() {
     addTaskContainer.append(titleLabel, titleInput, descriptionLabel, descriptionInput, btnContainer);
 
     app?.appendChild(addTaskContainer);
-
 }
 
 function closeAddTaskForm(addTaskContainer: HTMLDivElement) {

@@ -3,7 +3,6 @@ import './style/style.css';
 import { io } from "socket.io-client";
 import { renderTaskToVoteOn } from "./modules/taskToVoteOn";
 import { createLoginForm } from "./modules/loginForm";
-import { renderAddTaskBtn } from "./modules/addTask";
 import { ITask } from "./models/ITask";
 import { createVoteCards } from "./modules/voteCards";
 import { IUser } from "./models/IUser";
