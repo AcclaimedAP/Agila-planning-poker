@@ -217,3 +217,17 @@ body {
     border-radius: 1rem;
     padding: 2rem;
 }
+
+.expandedCompletedVote {
+    position: absolute;
+    top: 20%;
+    left: calc(50% - 10rem);
+    width: 20rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    background-color: var.$offWhite;
+    border: 2px solid var.$grey;
+    border-radius: 1rem;
+    padding: 2rem;
+}
