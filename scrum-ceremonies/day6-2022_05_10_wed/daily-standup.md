@@ -14,8 +14,9 @@ On the afternoon me and Nicholas tried solving another bug we found together. No
 In the evening I continued with my issue that was to set up some basic styling.
 Today I will continue with the issue of the admin rendererd functionallity and send the completed votes to the backend.
 
-### Name 3
-Lorem ipsum dolor sit amet
+### Alex
+Igår fixade jag med votecards, samt lite pyssel av buggar och sånt.
+Idag ska jag fixa lite mera med votecards, så de visar average vote och sånt, samt lite små buggar!
 
 ### Filip
 Igår satt jag och fixade så att loginform försvinner efter lyckad inloggning. 
