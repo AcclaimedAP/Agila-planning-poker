@@ -1,4 +1,4 @@
-import { addTaskSocketOn, userConnectSocketOn, userVoteSocketOn } from "../socket";
+import { addTaskSocketOn, clearVotesSocketOn, userConnectSocketOn, userVoteSocketOn } from "../socket";
 import { loginUser } from "./loginUser";
 
 export function createLoginForm(): HTMLDivElement {
@@ -31,6 +31,7 @@ export function createLoginForm(): HTMLDivElement {
     userConnectSocketOn();
     userVoteSocketOn();
     addTaskSocketOn();
+    clearVotesSocketOn();
     loginUser(usernameInput.value);
 
     formContainer.remove();

@@ -70,6 +70,13 @@ io.on("connection", (socket) => {
     completedVotes.push(completedVote);
     io.emit("completed-vote", completedVotes);
   });
+
+  socket.on("clear-votes", (arg) => {
+    if (arg) {
+      currentVotes = [];
+    }
+    io.emit("clear-votes");
+  })
 });
 
 app.use(logger("dev"));
