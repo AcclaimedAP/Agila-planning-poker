@@ -6,6 +6,7 @@ import { IVotedOnTask } from "../models/IVotedOnTask";
 import { IVote } from "../models/IVote";
 
 const socket = io(`localhost:3000`);
+const renderedTasksContainer = document.querySelector('.login-and-rendered-tasks');
 
 export let currentUser: IUser | undefined;
 
@@ -45,7 +46,7 @@ export function renderTaskToVoteOn(task: ITask) {
     }
 
     if (!existingVoteSection) {
-        app?.append(voteSection);
+        renderedTasksContainer?.append(voteSection);
     }
 
     return voteSection;
