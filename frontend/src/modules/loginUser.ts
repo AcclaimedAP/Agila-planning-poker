@@ -3,6 +3,8 @@ export const socket = io('http://localhost:3000');
 import { renderAddTaskBtn } from "./addTask";
 import { app } from "../main";
 
+const upcomingTasksContainer = document.querySelector('.upcoming-tasks');
+
 export async function loginUser(username: string): Promise<void> {
   const user = {
     username: username,
@@ -17,6 +19,6 @@ export async function loginUser(username: string): Promise<void> {
   sessionStorage.setItem("username", user.username);
  
   if(username === "admin") {
-    app?.appendChild(renderAddTaskBtn());
+    upcomingTasksContainer?.append(renderAddTaskBtn());
   }
 }

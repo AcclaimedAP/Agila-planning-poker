@@ -5,6 +5,7 @@ import { createVoteCards } from "./voteCards";
 import { currentUser } from "./taskToVoteOn";
 
 const socket = io('http://localhost:3000');
+const upcomingTasksContainer = document.querySelector('.upcoming-tasks');
 
 export function renderTaskList(tasks: ITask[]) {
     const existingTaskList = document.getElementById("task-list");
@@ -29,15 +30,15 @@ export function renderTaskList(tasks: ITask[]) {
                     const voteBtnId = parseInt(e.target.id.split("-")[1]);
                     const task = tasks[voteBtnId];
                     socket.emit("task-to-vote-on", task);
-                    const app = document.getElementById('app') as HTMLDivElement;
+                    const upcomingTasksContainer = document.querySelector('.upcoming-tasks') as HTMLDivElement;
                     const data = JSON.parse(sessionStorage.getItem("users") ?? "");
-                    app.appendChild(createVoteCards(data, false, false));
+                    upcomingTasksContainer.appendChild(createVoteCards(data, false, false));
                 }
             });
         }
     });
 
     if (!existingTaskList) {
-        app?.appendChild(taskList);
+        upcomingTasksContainer?.appendChild(taskList);
     }
 }
